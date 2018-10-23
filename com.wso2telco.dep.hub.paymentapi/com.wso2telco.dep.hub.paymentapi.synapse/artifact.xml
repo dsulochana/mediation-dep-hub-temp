@@ -41,6 +41,18 @@
     <artifact name="paymentRefundSeq" groupId="com.wso2telco.dep.hub.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
         <file>src/main/synapse-config/sequences/paymentRefundSeq.xml</file>
     </artifact>
+    <artifact name="paymentReserveSeq" groupId="com.wso2telco.dep.hub.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/paymentReserveSeq.xml</file>
+    </artifact>
+    <artifact name="paymentReserveChargeSeq" groupId="com.wso2telco.dep.hub.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/paymentReserveChargeSeq.xml</file>
+    </artifact>
+    <artifact name="paymentReserveReleaseSeq" groupId="com.wso2telco.dep.hub.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/paymentReserveReleaseSeq.xml</file>
+    </artifact>
+    <artifact name="paymentReserveAdditionalSeq" groupId="com.wso2telco.dep.hub.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/paymentReserveAdditionalSeq.xml</file>
+    </artifact>
     <artifact name="paymentStatusSeq" groupId="com.wso2telco.dep.hub.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
         <file>src/main/synapse-config/sequences/paymentStatusSeq.xml</file>
     </artifact>

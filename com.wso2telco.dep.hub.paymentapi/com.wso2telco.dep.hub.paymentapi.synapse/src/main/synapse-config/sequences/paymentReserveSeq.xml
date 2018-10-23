@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="paymentReserveSeq" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <property expression="json-eval($.amountReservationTransaction.clientCorrelator)"
+              name="originalClientCorrelator" scope="default" type="STRING"/>
+    <class name="org.wso2telco.dep.nashornmediator.NashornMediator">
+        <property name="script" value="
+            var payload= mc.getPayloadJSON();
+            var clientCorrelator = mc.getProperty('clientCorrelator');
+            payload.amountReservationTransaction.clientCorrelator = clientCorrelator;
+            mc.setPayloadJSON(payload);
+        "/>
+    </class>
+    <property action="remove" name="REST_URL_POSTFIX" scope="axis2"/>
+    <header expression="get-property('ENDPOINT')" name="To" scope="default"/>
+
+    <property expression="json-eval($.amountReservationTransaction.endUserId)"
+              name="endUserId" scope="default" type="STRING"/>
+
+    <call-template target="com.wso2telco.dep.common.loggingExtension.Template">
+      <with-param name="direction" value="REQUESTOUT"/>
+    </call-template>
+
+    <!-- quota limit -->
+    <call-template target="com.wso2telco.dep.common.quota.limit.Template">
+        <with-param name="direction" value="sb"/>
+    </call-template>
+
+    <!-- data publishing -->
+    <call-template target="com.wso2telco.dep.common.main.request.datapublisher.Template">
+        <with-param name="msisdn" value="{$ctx:MSISDN}"/>
+        <with-param name="direction" value="sb"/>
+    </call-template>
+    <send>
+        <endpoint key="defaultPaymentEndpoint"/>
+    </send>
+</sequence>

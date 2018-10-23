@@ -3,8 +3,6 @@
     <call-template target="com.wso2telco.dep.common.loggingExtension.Template">
         <with-param name="direction" value="REQUESTIN"/>
     </call-template>
-    <property expression="json-eval($.amountTransaction.clientCorrelator)"
-              name="originalClientCorrelator" scope="default" type="STRING"/>
     <sequence key="apiPropertySeq"/>
     <class description="HandlerMediatorClass" name="com.wso2telco.dep.mediator.HandlerMediator">
         <property name="executorClass" value="com.wso2telco.dep.mediator.impl.payment.PaymentExecutor"/>
@@ -43,6 +41,18 @@
         </case>
         <case regex="ListTransactionsHandler">
             <sequence key="paymentListTransactionsSeq"/>
+        </case>
+        <case regex="AmountReserveHandler">
+            <sequence key="paymentReserveSeq"/>
+        </case>
+        <case regex="AmountReserveChargeHandler">
+            <sequence key="paymentReserveChargeSeq"/>
+        </case>
+        <case regex="AmountReserveReleaseHandler">
+            <sequence key="paymentReserveReleaseSeq"/>
+        </case>
+        <case regex="AmountReserveAdditionalHandler">
+            <sequence key="paymentReserveAdditionalSeq"/>
         </case>
         <default>
             <!-- TODO:handle error -->
