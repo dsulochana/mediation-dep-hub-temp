@@ -66,5 +66,13 @@
         <with-param name="msisdn" value="{$ctx:MSISDN}"/>
         <with-param name="direction" value="nb"/>
     </call-template>
-	
+	<switch source="get-property('HANDLER')">
+        <case regex="AmountChargeHandler">
+        	<call-template target="com.wso2telco.dep.common.anonymizeUserData.Template">
+				<with-param name="anonymize" value="false"/>
+				<with-param name="handler" value="AmountChargeHandler"/>
+			</call-template>
+        </case>
+        <default/>
+    </switch>
 </sequence>
